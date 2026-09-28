@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai Stop</title>
+
+    <style>
+        /* Reset */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background-color: #fff6e5;
+            color: #4a2c1a;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 40px;
+            background-color: #4a2c1a;
+        }
+
+        header h1 {
+            color: #fff6e5;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #e8891d, #4a2c1a);
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            padding: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #4a2c1a;
+            background: #fff6e5;
+            border-radius: 50px;
+            margin-top: 20px;
+            padding: 12px 28px;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+        }
+
+        h1, h2, h3 {
+            font-family: "Trebuchet MS", sans-serif;
+        }
+
+        /* Menu Section */
+        #menu {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        #menu h2 {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            color: #4a2c1a;
+        }
+
+        /* Menu Cards */
+        #menu article {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5d5bd;
+            transition: transform 0.3s;
+        }
+
+        #menu article:hover {
+            transform: translateY(-5px);
+        }
+
+        #menu article h3 {
+            color: #4a2c1a;
+            margin-bottom: 12px;
+        }
+
+        #menu article p {
+            color: #5c5048;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .price {
+            color: #e8891d;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        #about {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+            line-height: 1.7;
+        }
+
+        #about h2 {
+            margin-bottom: 25px;
+        }
+
+        #about h3 {
+            margin: 12px 0;
+        }
+
+        #about ul, #about ol {
+            padding-left: 20px;
+        }
+
+        /* Timings Section */
+        #timing {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        #timing h2 {
+            margin-bottom: 25px;
+        }
+
+        #timing table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        #timing th {
+            background-color: #4a2c1a;
+            color: white;
+            text-align: left;
+            padding: 20px;
+        }
+
+        #timing td {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #timing tbody tr:nth-child(even) {
+            background-color: #fff0d8;
+        }
+
+        /* Contact Section */
+        #contact {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        #contact h2 {
+            margin-bottom: 25px;
+        }
+
+        #contact form {
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact select,
+        #contact textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font: inherit;
+            margin-bottom: 10px;
+        }
+
+        #contact textarea {
+            resize: vertical;
+        }
+
+        #contact input:focus,
+        #contact select:focus,
+        #contact textarea:focus {
+            outline: none;
+            border-color: #e8891d;
+        }
+
+        #contact input[type="radio"],
+        #contact input[type="checkbox"] {
+            width: auto;
+        }
+
+        #contact button {
+            width: fit-content;
+            padding: 12px 28px;
+            margin-top: 15px;
+            background-color: #4a2c1a;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #contact button:hover {
+            background-color: #e8891d;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a2c1a;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            #menu {
+                grid-template-columns: 1fr;
+            }
+
+            #about, #timing, #contact {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Chai Stop</h1>
+
+        <nav>
+            <ul>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#timing">Timings</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="emoji">☕</div>
+            <h2>Fresh chai. Zero rush.</h2>
+            <p>Brewed slow, served hot, since 2015.</p>
+            <a href="#menu" class="btn">See the menu</a>
+        </div>
+
+        <!-- Menu Section -->
+        <section id="menu">
+            <h2>Our Menu</h2>
+
+            <article>
+                <h3>☕ Masala Chai</h3>
+                <p>Ginger, cardamom and a pinch of black pepper.</p>
+                <div class="price">Rs. 20</div>
+            </article>
+
+            <article>
+                <h3>☕ Kulhad Chai</h3>
+                <p>Served in clay for that earthy smell.</p>
+                <div class="price">Rs. 30</div>
+            </article>
+
+            <article>
+                <h3>☕ Cold Coffee</h3>
+                <p>Thick, chilled and topped with cocoa.</p>
+                <div class="price">Rs. 60</div>
+            </article>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About us</h2>
+
+            <p>
+                We started as a tiny cart outside a college gate.
+                Students kept coming back, so we kept the recipe
+                simple and the kettle always on. Today we serve
+                hundreds of cups a day.
+            </p>
+
+            <h3>What makes us different</h3>
+            <ul>
+                <li>Fresh milk delivered every morning</li>
+                <li>Zero plastic cups</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+
+            <h3>How to order</h3>
+            <ol>
+                <li>Pick your drink</li>
+                <li>Pay at the counter</li>
+                <li>Collect when your name is called</li>
+            </ol>
+        </section>
+
+        <!-- Timings Section -->
+        <section id="timing">
+            <h2>Timings</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Opens</th>
+                        <th>Closes</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Mon - Fri</td>
+                        <td>7:00 AM</td>
+                        <td>10:00 PM</td>
+                    </tr>
+
+                    <tr>
+                        <td>Saturday</td>
+                        <td>8:00 AM</td>
+                        <td>11:00 PM</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sunday</td>
+                        <td>9:00 AM</td>
+                        <td>9:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Send us feedback</h2>
+
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="you@example.com">
+
+                <label for="drink">Favourite drink</label>
+                <select id="drink">
+                    <option>Masala Chai</option>
+                    <option selected>Kulhad Chai</option>
+                    <option>Cold Coffee</option>
+                </select>
+
+                <p>How was the service?</p>
+
+                <label>
+                    <input type="radio" name="service" value="Good" checked>
+                    Good
+                </label>
+
+                <label>
+                    <input type="radio" name="service" value="Okay">
+                    Okay
+                </label>
+
+                <label>
+                    <input type="radio" name="service" value="Bad">
+                    Bad
+                </label>
+
+                <label for="message">Message</label>
+                <textarea id="message" rows="6"></textarea>
+
+                <label>
+                    <input type="checkbox" name="offers">
+                    Send me offers
+                </label>
+
+                <button type="submit">Send feedback</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Chai Stop. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
